@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e2f;
+  color: #f8f8f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.welcome-screen {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-screen h1 {
+  font-size: 2.5rem;
+  color: #ffcf56;
+  text-shadow: 0 0 10px #ffcf56, 0 0 20px #ffaa00;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: #a8dadc;
+  margin-top: -10px;
+}
+
+#welcome-btn {
+  background-color: #00b4d8;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#welcome-btn:hover {
+  background-color: #0077b6;
+}
+
+.game-container {
+  display: none;
+  text-align: center;
+  background: #2b2d42;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  z-index: 5;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  color: #a8dadc;
+  font-weight: bold;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  margin: 15px 0;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  background: #edf2f4;
+  font-size: 36px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.cell.X {
+  color: #005f56;
+}
+
+.cell.O {
+  color: #f72585;
+}
+
+.cell.win {
+  background-color: #caffbf;
+  box-shadow: 0 0 15px #00ffab;
+  transform: scale(1.1);
+}
+
+#reset-btn {
+  background-color: #00b4d8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#reset-btn:hover {
+  background-color: #0077b6;
+}
+
+#status {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffcf56;
+  text-shadow: 0 0 5px #ffcf56;
+  margin-top: 10px;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.5;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  background: #ff6b6b;
+  animation: floatUp 12s ease-in-out infinite;
+  top: 80%;
+  left: 10%;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00f5d4;
+  animation: floatSide 10s ease-in-out infinite;
+  top: 5%;
+  left: 5%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid #f72585;
+  animation: rotateMove 14s linear infinite;
+  top: 50%;
+  left: 25%;
+}
+
+.rectangle {
+  width: 100px;
+  height: 40px;
+  background: #7209b7;
+  border-radius: 10px;
+  animation: horizontalWave 15s ease-in-out infinite;
+  top: 30%;
+  right: 5%;
+}
+
+.diamond {
+  width: 50px;
+  height: 50px;
+  background: #ffd6a5;
+  transform: rotate(45deg);
+  animation: floatBounce 18s ease-in-out infinite;
+  left: 40%;
+  top: 20%;
+}
+
+.star {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 60px solid #ffb703;
+  animation: horizontalWave 10s ease-in-out infinite;
+  top: 70%;
+  right: 30%;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ffcf56, 0 0 20px #ffaa00;
+  }
+  to {
+    text-shadow: 0 0 20px #ffaa00, 0 0 30px #ffcf56;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSide {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotateMove {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(180deg) translateY(-50px);
+  }
+  100% {
+    transform: rotate(360deg) translateY(0);
+  }
+}
+
+@keyframes horizontalWave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatBounce {
+  0% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(-60px);
+  }
+  100% {
+    transform: rotate(45deg) translateY(0);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
